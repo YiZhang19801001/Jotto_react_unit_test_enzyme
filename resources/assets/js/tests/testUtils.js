@@ -11,7 +11,7 @@ export const findTestByArrt = (wrapper, val) => {
   return wrapper.find(`[data-test='${val}']`);
 };
 
-export const checkProp = function(component, conformingProps) {
+export const checkProp = (component, conformingProps) => {
   const propError = checkPropTypes(
     component.propTypes,
     conformingProps,
@@ -20,4 +20,15 @@ export const checkProp = function(component, conformingProps) {
   );
 
   expect(propError).toBeUndefined();
+};
+
+export const checkNotProp = (component, conformingProps) => {
+  const propError = checkPropTypes(
+    component.propTypes,
+    conformingProps,
+    "prop",
+    component.name
+  );
+
+  expect(propError).not.toBeUndefined();
 };
