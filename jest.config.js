@@ -1,4 +1,4 @@
 module.exports = {
-  testRegex: "./tests/.*.test.js$"
-  //   setupTestFrameworkScriptFile: "./resources/assets/js/tests/conf/enzyme.js"
+  testRegex: "./tests/.*.test.js$",
+  setupTestFrameworkScriptFile: "./resources/assets/js/tests/conf/enzyme.js"
 };
