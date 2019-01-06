@@ -27395,10 +27395,15 @@ var _successReducer = __webpack_require__(56);
 
 var _successReducer2 = _interopRequireDefault(_successReducer);
 
+var _guessedWord = __webpack_require__(88);
+
+var _guessedWord2 = _interopRequireDefault(_guessedWord);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
-  success: _successReducer2.default
+  success: _successReducer2.default,
+  guessedWords: _guessedWord2.default
 });
 
 /***/ }),
@@ -27443,16 +27448,20 @@ exports.default = function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.correctGuess = correctGuess;
-var actionTypes = exports.actionTypes = { CORRECT_GUESS: "CORRECT_GUESS" };
+var actionTypes = exports.actionTypes = {
+  CORRECT_GUESS: "CORRECT_GUESS",
+  GUESS_WORD: "GUESS_WORD"
+};
 
 /**
- * @function correctGuess
- * @returns {object} - Action object with type 'CORRECT_GUESS'
+ * Returns Redux Thunk function that dispatches GUESS_WORD action and (conditionally) CORRECT_GUESS action
+ * @function guessWord
+ * @param {string} guessedWord
+ * @returns {function} - Redux Thunk function
  */
-function correctGuess() {
-  return { type: actionTypes.CORRECT_GUESS };
-}
+var guessWord = exports.guessWord = function guessWord(guessedWord) {
+  return function (dispatch, getState) {};
+};
 
 /***/ }),
 /* 58 */
@@ -56146,6 +56155,27 @@ var thunk = createThunkMiddleware();
 thunk.withExtraArgument = createThunkMiddleware;
 
 /* harmony default export */ __webpack_exports__["default"] = (thunk);
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+/**
+ * @function guessedWordsReducer
+ * @param {array} state - Array of guessed words
+ * @param {object} action - action to be reduced
+ * @returns {array} - new guessedWords state
+ */
+exports.default = function (state, action) {
+  return null;
+};
 
 /***/ })
 /******/ ]);
