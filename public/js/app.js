@@ -27349,23 +27349,51 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var UnconnectedInput = exports.UnconnectedInput = function (_React$Component) {
   _inherits(UnconnectedInput, _React$Component);
 
-  function UnconnectedInput() {
+  /**
+   * Create ref for input box
+   * @method constructor
+   * @param {object} props
+   * @returns {undefined}
+   */
+  function UnconnectedInput(props) {
     _classCallCheck(this, UnconnectedInput);
 
-    return _possibleConstructorReturn(this, (UnconnectedInput.__proto__ || Object.getPrototypeOf(UnconnectedInput)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (UnconnectedInput.__proto__ || Object.getPrototypeOf(UnconnectedInput)).call(this, props));
+
+    _this.inputBox = _react2.default.createRef();
+
+    // bind function to component
+    _this.submitGuessedWord = _this.submitGuessedWord.bind(_this);
+    return _this;
   }
 
   _createClass(UnconnectedInput, [{
+    key: "submitGuessedWord",
+    value: function submitGuessedWord(e) {
+      // don't submit form
+      e.preventDefault();
+      var guessedWord = this.inputBox.current.value;
+      if (guessedWord && guessedWord.length > 0) {
+        this.props.guessWord(guessedWord);
+      }
+    }
+
+    /**
+     * Render the component
+     * @method Render
+     * @returns {JSX.Element} - Rendered component
+     */
+
+  }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       var contents = this.props.success ? null : _react2.default.createElement(
         "form",
         { className: "form-inline" },
         _react2.default.createElement("input", {
-          className: "form-control mb-2 mx-sm-3",
           "data-test": "input-box",
+          ref: this.inputBox,
+          className: "form-control mb-2 mx-sm-3",
           id: "word-guess",
           type: "text",
           placeholder: "enter guess"
@@ -27375,9 +27403,7 @@ var UnconnectedInput = exports.UnconnectedInput = function (_React$Component) {
           {
             "data-test": "input-submit-button",
             className: "btn btn-primary mb-2",
-            onClick: function onClick() {
-              _this2.props.guessWord("train");
-            },
+            onClick: this.submitGuessedWord,
             type: "submit"
           },
           "Submit"
