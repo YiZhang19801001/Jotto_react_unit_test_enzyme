@@ -27135,14 +27135,25 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _actions = __webpack_require__(84);
+
 /**
  * @function successReducer
- * @param {array} state - Array of guessed words
+ * @param {array} state - current success state
  * @param {object} action - action to be reduced.
  * @returns {boolean} - new success state.
  */
-exports.default = function (state, action) {
-  return null;
+exports.default = function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _actions.actionTypes.CORRECT_GUESS:
+      return true;
+
+    default:
+      return state;
+  }
 };
 
 /***/ }),
@@ -55806,6 +55817,31 @@ module.exports = function spread(callback) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.correctGuess = correctGuess;
+var actionTypes = exports.actionTypes = { CORRECT_GUESS: "CORRECT_GUESS" };
+
+/**
+ * @function correctGuess
+ * @returns {object} - Action object with type 'CORRECT_GUESS'
+ */
+function correctGuess() {
+  return { type: actionTypes.CORRECT_GUESS };
+}
 
 /***/ })
 /******/ ]);
