@@ -27153,6 +27153,12 @@ var UnconnectedMain = exports.UnconnectedMain = function (_React$Component) {
           { className: " text-center" },
           "Jotto"
         ),
+        _react2.default.createElement(
+          "h3",
+          null,
+          "The Secret Word is ",
+          this.props.secretWord
+        ),
         _react2.default.createElement(_Congrats2.default, { success: this.props.success }),
         _react2.default.createElement(_Input2.default, null),
         _react2.default.createElement(_GuessedWords2.default, { guessedWords: this.props.guessedWords })
@@ -27543,13 +27549,16 @@ var guessWord = exports.guessWord = function guessWord(guessedWord) {
 };
 
 var getSecretWord = exports.getSecretWord = function getSecretWord() {
-  return function (dispatch) {
-    return _axios2.default.get("http://localhost:3030").then(function (res) {
-      dispatch({
-        type: actionTypes.SET_SECRET_WORD,
-        payload: res.data
-      });
-    });
+  // return dispatch => {
+  //   return Axios.get("http://localhost:3030").then(res => {
+  //     dispatch({
+  //       type: actionTypes.SET_SECRET_WORD,
+  //       payload: res.data
+  //     });
+  //   });
+  // };
+  return function (dispatch, getState) {
+    dispatch({ type: actionTypes.SET_SECRET_WORD, payload: "party" });
   };
 };
 

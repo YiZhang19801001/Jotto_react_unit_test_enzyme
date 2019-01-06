@@ -13,6 +13,7 @@ export class UnconnectedMain extends React.Component {
     return (
       <div className="container" data-test="component-main">
         <h1 className=" text-center">Jotto</h1>
+        <h3>The Secret Word is {this.props.secretWord}</h3>
         <Congrats success={this.props.success} />
         <Input />
         <GuessedWords guessedWords={this.props.guessedWords} />
