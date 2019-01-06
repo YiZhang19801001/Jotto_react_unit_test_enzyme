@@ -29,7 +29,7 @@
   "dependencies": {
     "ajv": "^6.6.2",
     "prop-types": "^15.6.2",
-    "react-redux": "^6.0.0",
+    "react-redux": "^5.0.7",
     "redux": "^4.0.1"
   }
 }
