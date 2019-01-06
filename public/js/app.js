@@ -27453,13 +27453,20 @@ exports.default = function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.guessWord = exports.actionTypes = undefined;
+exports.getSecretWord = exports.guessWord = exports.actionTypes = undefined;
+
+var _axios = __webpack_require__(62);
+
+var _axios2 = _interopRequireDefault(_axios);
 
 var _helpers = __webpack_require__(90);
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var actionTypes = exports.actionTypes = {
   CORRECT_GUESS: "CORRECT_GUESS",
-  GUESS_WORD: "GUESS_WORD"
+  GUESS_WORD: "GUESS_WORD",
+  SET_SECRET_WORD: "SET_SECRET_WORD"
 };
 
 /**
@@ -27481,6 +27488,17 @@ var guessWord = exports.guessWord = function guessWord(guessedWord) {
     if (guessedWord === secretWord) {
       dispatch({ type: actionTypes.CORRECT_GUESS });
     }
+  };
+};
+
+var getSecretWord = exports.getSecretWord = function getSecretWord() {
+  return function (dispatch) {
+    return _axios2.default.get("http://localhost:3030").then(function (res) {
+      dispatch({
+        type: actionTypes.SET_SECRET_WORD,
+        payload: res.data
+      });
+    });
   };
 };
 
@@ -56222,11 +56240,25 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _actions = __webpack_require__(57);
+
+/**
+ * @function secretWordReducer
+ * @param {string} state - State before reducer
+ * @param {object} action - Action sent to reducer
+ * @returns {string} - New state (secret word payload from action)
+ */
 exports.default = function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   var action = arguments[1];
 
-  return state;
+  switch (action.type) {
+    case _actions.actionTypes.SET_SECRET_WORD:
+      return action.payload;
+
+    default:
+      return state;
+  }
 };
 
 /***/ }),
