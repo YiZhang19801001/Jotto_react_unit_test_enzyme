@@ -2254,6 +2254,10 @@ var _reactRedux = __webpack_require__(12);
 
 var _redux = __webpack_require__(9);
 
+var _reduxThunk = __webpack_require__(87);
+
+var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
 var _Main = __webpack_require__(51);
 
 var _Main2 = _interopRequireDefault(_Main);
@@ -2266,9 +2270,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 __webpack_require__(58);
 
+var store = (0, _redux.createStore)(_reducers2.default, (0, _redux.applyMiddleware)(_reduxThunk2.default));
+
 _reactDom2.default.render(_react2.default.createElement(
   _reactRedux.Provider,
-  { store: (0, _redux.createStore)(_reducers2.default) },
+  { store: store },
   _react2.default.createElement(_Main2.default, null)
 ), document.querySelector("#root"));
 
@@ -27337,7 +27343,7 @@ var Input = function (_React$Component) {
         "form",
         { className: "form-inline" },
         _react2.default.createElement("input", {
-          className: "mb-2 mx-sm-3",
+          className: "form-control mb-2 mx-sm-3",
           "data-test": "input-box",
           id: "word-guess",
           type: "text",
@@ -56109,6 +56115,37 @@ module.exports = function spread(callback) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+function createThunkMiddleware(extraArgument) {
+  return function (_ref) {
+    var dispatch = _ref.dispatch,
+        getState = _ref.getState;
+    return function (next) {
+      return function (action) {
+        if (typeof action === 'function') {
+          return action(dispatch, getState, extraArgument);
+        }
+
+        return next(action);
+      };
+    };
+  };
+}
+
+var thunk = createThunkMiddleware();
+thunk.withExtraArgument = createThunkMiddleware;
+
+/* harmony default export */ __webpack_exports__["default"] = (thunk);
 
 /***/ })
 /******/ ]);
