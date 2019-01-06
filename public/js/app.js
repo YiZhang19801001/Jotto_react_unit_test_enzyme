@@ -27096,6 +27096,7 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.UnconnectedMain = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -27127,16 +27128,21 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Main = function (_React$Component) {
-  _inherits(Main, _React$Component);
+var UnconnectedMain = exports.UnconnectedMain = function (_React$Component) {
+  _inherits(UnconnectedMain, _React$Component);
 
-  function Main() {
-    _classCallCheck(this, Main);
+  function UnconnectedMain() {
+    _classCallCheck(this, UnconnectedMain);
 
-    return _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (UnconnectedMain.__proto__ || Object.getPrototypeOf(UnconnectedMain)).apply(this, arguments));
   }
 
-  _createClass(Main, [{
+  _createClass(UnconnectedMain, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.getSecretWord();
+    }
+  }, {
     key: "render",
     value: function render() {
       return _react2.default.createElement(
@@ -27154,7 +27160,7 @@ var Main = function (_React$Component) {
     }
   }]);
 
-  return Main;
+  return UnconnectedMain;
 }(_react2.default.Component);
 
 function mapStateToProps(_ref) {
@@ -27164,7 +27170,8 @@ function mapStateToProps(_ref) {
 
   return { success: success, secretWord: secretWord, guessedWords: guessedWords };
 }
-exports.default = (0, _reactRedux.connect)(mapStateToProps, { getSecretWord: _actions.getSecretWord })(Main);
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, { getSecretWord: _actions.getSecretWord })(UnconnectedMain);
 
 /***/ }),
 /* 52 */
