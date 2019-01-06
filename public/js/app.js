@@ -27326,6 +27326,7 @@ exports.default = Congrats;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.UnconnectedInput = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -27345,18 +27346,20 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Input = function (_React$Component) {
-  _inherits(Input, _React$Component);
+var UnconnectedInput = exports.UnconnectedInput = function (_React$Component) {
+  _inherits(UnconnectedInput, _React$Component);
 
-  function Input() {
-    _classCallCheck(this, Input);
+  function UnconnectedInput() {
+    _classCallCheck(this, UnconnectedInput);
 
-    return _possibleConstructorReturn(this, (Input.__proto__ || Object.getPrototypeOf(Input)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (UnconnectedInput.__proto__ || Object.getPrototypeOf(UnconnectedInput)).apply(this, arguments));
   }
 
-  _createClass(Input, [{
+  _createClass(UnconnectedInput, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var contents = this.props.success ? null : _react2.default.createElement(
         "form",
         { className: "form-inline" },
@@ -27372,6 +27375,9 @@ var Input = function (_React$Component) {
           {
             "data-test": "input-submit-button",
             className: "btn btn-primary mb-2",
+            onClick: function onClick() {
+              _this2.props.guessWord("train");
+            },
             type: "submit"
           },
           "Submit"
@@ -27385,7 +27391,7 @@ var Input = function (_React$Component) {
     }
   }]);
 
-  return Input;
+  return UnconnectedInput;
 }(_react2.default.Component);
 
 function mapStateToProps(_ref) {
@@ -27394,7 +27400,7 @@ function mapStateToProps(_ref) {
   return { success: success };
 }
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, { guessWord: _actions.guessWord })(Input);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, { guessWord: _actions.guessWord })(UnconnectedInput);
 
 /***/ }),
 /* 55 */

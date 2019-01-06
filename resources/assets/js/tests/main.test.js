@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import { storeFactory } from "./testUtils";
+import { storeFactory, findTestByArrt } from "./testUtils";
 import Main, { UnconnectedMain } from "../components/Main";
 
 /**
