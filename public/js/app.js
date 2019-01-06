@@ -27103,6 +27103,8 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(12);
+
 var _GuessedWords = __webpack_require__(52);
 
 var _GuessedWords2 = _interopRequireDefault(_GuessedWords);
@@ -27114,6 +27116,8 @@ var _Congrats2 = _interopRequireDefault(_Congrats);
 var _Input = __webpack_require__(54);
 
 var _Input2 = _interopRequireDefault(_Input);
+
+var _actions = __webpack_require__(57);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27143,11 +27147,9 @@ var Main = function (_React$Component) {
           { className: " text-center" },
           "Jotto"
         ),
-        _react2.default.createElement(_Congrats2.default, { success: true }),
+        _react2.default.createElement(_Congrats2.default, { success: this.props.success }),
         _react2.default.createElement(_Input2.default, null),
-        _react2.default.createElement(_GuessedWords2.default, {
-          guessedWords: [{ guessedWord: "train", letterMatchCount: 3 }]
-        })
+        _react2.default.createElement(_GuessedWords2.default, { guessedWords: this.props.guessedWords })
       );
     }
   }]);
@@ -27155,7 +27157,14 @@ var Main = function (_React$Component) {
   return Main;
 }(_react2.default.Component);
 
-exports.default = Main;
+function mapStateToProps(_ref) {
+  var success = _ref.success,
+      secretWord = _ref.secretWord,
+      guessedWords = _ref.guessedWords;
+
+  return { success: success, secretWord: secretWord, guessedWords: guessedWords };
+}
+exports.default = (0, _reactRedux.connect)(mapStateToProps, { getSecretWord: _actions.getSecretWord })(Main);
 
 /***/ }),
 /* 52 */
