@@ -27375,6 +27375,7 @@ var UnconnectedInput = exports.UnconnectedInput = function (_React$Component) {
       var guessedWord = this.inputBox.current.value;
       if (guessedWord && guessedWord.length > 0) {
         this.props.guessWord(guessedWord);
+        this.inputBox.current.value = "";
       }
     }
 

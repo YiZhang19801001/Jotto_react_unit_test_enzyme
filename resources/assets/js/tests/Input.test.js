@@ -102,4 +102,7 @@ describe(`'guessWord' action creator call`, () => {
 
     expect(guessWordArg).toBe(guessedWord);
   });
+  test(`clear input after submit button been clicked`, () => {
+    expect(wrapper.instance().inputBox.current.value).toBe("");
+  });
 });
