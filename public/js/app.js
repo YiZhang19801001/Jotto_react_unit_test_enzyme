@@ -27399,11 +27399,16 @@ var _guessedWord = __webpack_require__(88);
 
 var _guessedWord2 = _interopRequireDefault(_guessedWord);
 
+var _secretWord = __webpack_require__(89);
+
+var _secretWord2 = _interopRequireDefault(_secretWord);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
   success: _successReducer2.default,
-  guessedWords: _guessedWord2.default
+  guessedWords: _guessedWord2.default,
+  secretWord: _secretWord2.default
 });
 
 /***/ }),
@@ -27448,6 +27453,10 @@ exports.default = function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.guessWord = exports.actionTypes = undefined;
+
+var _helpers = __webpack_require__(90);
+
 var actionTypes = exports.actionTypes = {
   CORRECT_GUESS: "CORRECT_GUESS",
   GUESS_WORD: "GUESS_WORD"
@@ -27460,7 +27469,19 @@ var actionTypes = exports.actionTypes = {
  * @returns {function} - Redux Thunk function
  */
 var guessWord = exports.guessWord = function guessWord(guessedWord) {
-  return function (dispatch, getState) {};
+  return function (dispatch, getState) {
+    var secretWord = getState().secretWord;
+    var letterMatchCount = (0, _helpers.getLetterMatchCount)(guessedWord, secretWord);
+
+    dispatch({
+      type: actionTypes.GUESS_WORD,
+      payload: { guessedWord: guessedWord, letterMatchCount: letterMatchCount }
+    });
+
+    if (guessedWord === secretWord) {
+      dispatch({ type: actionTypes.CORRECT_GUESS });
+    }
+  };
 };
 
 /***/ }),
@@ -56167,15 +56188,74 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _actions = __webpack_require__(57);
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 /**
  * @function guessedWordsReducer
  * @param {array} state - Array of guessed words
  * @param {object} action - action to be reduced
  * @returns {array} - new guessedWords state
  */
-exports.default = function (state, action) {
-  return null;
+exports.default = function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _actions.actionTypes.GUESS_WORD:
+      return [].concat(_toConsumableArray(state), [action.payload]);
+
+    default:
+      return state;
+  }
 };
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var action = arguments[1];
+
+  return state;
+};
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getLetterMatchCount = getLetterMatchCount;
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+/**
+ * @method getLetterMatchCount
+ * @param {string} guessedWord - guesssed word which enter by user
+ * @param {string} secretWord - secret word generate by api
+ * @returns {number} - number of letters matched between gussed and secret word
+ */
+function getLetterMatchCount(guessedWord, secretWord) {
+  var secretLetterSet = new Set(secretWord.split(""));
+  var guessedLetterSet = new Set(guessedWord.split(""));
+  return [].concat(_toConsumableArray(secretLetterSet)).filter(function (letter) {
+    return guessedLetterSet.has(letter);
+  }).length;
+}
 
 /***/ })
 /******/ ]);
